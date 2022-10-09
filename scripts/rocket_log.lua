@@ -41,13 +41,13 @@ function OnRocketLaunched(event)
 end
 
 function OnRocketCrashed(event)
-  log(tostring(game.tick)..": Rocket crashed!")
-  log(serpent.block(event))
+  --log(tostring(game.tick)..": Rocket crashed!")
+  --log(serpent.block(event))
   
   -- Update most recent launch from this launchpad to reflect that it crashed
   for idx = #global.history, 1, -1 do
-    if global.history[idx].launchpad_id == event.unit_number then
-      local log_data = global.history[idx]
+    local log_data = global.history[idx]
+    if log_data.launchpad_id == event.unit_number then
       if log_data.landingpad_name then
         -- This was a recent launch targeting a launchpad, update log entry
         log_data.landing_failed = true
